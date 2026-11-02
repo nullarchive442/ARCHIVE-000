@@ -1,0 +1,15 @@
+RECOVERED RECORD
+
+RECORD ID: 000
+RECOVERY STATUS: SUCCESSFUL
+ORIGIN: UNKNOWN
+
+The following message was recovered:
+
+OFFSET: +2 
+
+NQQM CV VJG HKTUV EQOOKV
+
+No additional data recovered.
+
+END OF RECORD.
