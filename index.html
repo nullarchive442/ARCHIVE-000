@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>THE ARCHIVE — ARCHIVE-000</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+
+:root {
+    --bg: #080a0b;
+    --panel: #0d1112;
+    --border: #20292a;
+    --text: #c5ceca;
+    --muted: #687571;
+    --green: #a0c8a8;
+    --red: #bd6565;
+}
+
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+}
+
+a { color: var(--green); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+header {
+    height: 65px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 7%;
+}
+
+.logo {
+    color: var(--green);
+    font-weight: 600;
+    letter-spacing: 3px;
+    font-size: 15px;
+}
+
+.nav { display: flex; gap: 25px; }
+.nav a { color: var(--muted); font-size: 12px; }
+.nav a:hover, .nav a.active { color: var(--green); }
+
+main {
+    width: min(900px, 88%);
+    margin: 65px auto;
+    min-height: 65vh;
+}
+
+.eyebrow {
+    color: var(--green);
+    letter-spacing: 2px;
+    font-size: 11px;
+    margin-bottom: 18px;
+}
+
+h1 {
+    font-size: clamp(30px, 6vw, 55px);
+    letter-spacing: 5px;
+    margin: 0 0 15px;
+    color: #e1e8e3;
+}
+
+h2 {
+    font-size: 17px;
+    font-weight: 500;
+    color: #dce5df;
+    margin-top: 35px;
+}
+
+p { line-height: 1.9; color: var(--muted); }
+
+.divider {
+    border: 0;
+    border-top: 1px solid var(--border);
+    margin: 30px 0;
+}
+
+.panel {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    padding: 22px;
+    margin: 18px 0;
+}
+
+.panel-title {
+    color: var(--green);
+    font-size: 11px;
+    letter-spacing: 2px;
+    margin-bottom: 17px;
+}
+
+.status {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    padding: 10px 0;
+    border-bottom: 1px solid #182020;
+}
+
+.status:last-child { border: 0; }
+.status span:first-child { color: var(--muted); }
+.status span:last-child { color: var(--green); }
+
+.record {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 17px;
+    border: 1px solid var(--border);
+    margin: 9px 0;
+    background: var(--panel);
+    transition: .2s;
+}
+
+.record:hover {
+    border-color: var(--green);
+    transform: translateX(3px);
+}
+
+.record-name { color: var(--text); }
+.record-state { color: var(--muted); font-size: 10px; }
+
+.warning { color: var(--red) !important; }
+
+button {
+    font-family: inherit;
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--green);
+    padding: 11px 16px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #15201a;
+    border-color: var(--green);
+}
+
+pre {
+    white-space: pre-wrap;
+    word-break: break-word;
+    color: var(--green);
+    line-height: 1.9;
+    font-family: inherit;
+}
+
+.terminal {
+    background: #050707;
+    border: 1px solid var(--border);
+    padding: 20px;
+    min-height: 300px;
+}
+
+#output {
+    white-space: pre-wrap;
+    line-height: 1.8;
+    color: var(--green);
+    overflow-wrap: anywhere;
+}
+
+.input-line {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+    align-items: center;
+}
+
+.input-line span { color: var(--green); }
+
+input {
+    background: transparent;
+    border: none;
+    outline: none;
+    color: white;
+    font-family: inherit;
+    font-size: 13px;
+    width: 100%;
+}
+
+footer {
+    border-top: 1px solid var(--border);
+    padding: 25px 7%;
+    color: #46504c;
+    font-size: 10px;
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.small { font-size: 11px; color: var(--muted); }
+
+@media(max-width: 600px) {
+    header { padding: 0 5%; }
+    .nav { gap: 12px; }
+    .nav a { font-size: 10px; }
+    main { margin: 45px auto; }
+    .panel { padding: 16px; }
+    footer { padding: 20px 5%; }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <a class="logo" href="#/">THE ARCHIVE</a>
+
+    <nav class="nav">
+        <a href="#/">HOME</a>
+        <a href="#/records">RECORDS</a>
+        <a href="#/terminal">TERMINAL</a>
+        <a href="#/about">ABOUT</a>
+    </nav>
+</header>
+
+<main id="app"></main>
+
+<footer>
+    <span>ARCHIVE-000 // DIGITAL RECORDS DIVISION</span>
+    <span>CONNECTION: UNSTABLE</span>
+</footer>
+
+<script>
+const app = document.getElementById("app");
+
+const repo = "https://github.com/nullarchive442/ARCHIVE-000";
+const commits = repo + "/commits/main/";
+
+const records = {
+    "000": {
+        title: "RECOVERED RECORD",
+        status: "RECOVERED",
+        content: `
+RECORD ID: 000
+ORIGIN: UNKNOWN
+RECOVERY STATUS: SUCCESSFUL
+
+OFFSET: +2
+
+NQQM CV VJG HKTUV EQOOKV
+
+No additional data recovered.
+
+END OF RECORD.`
+    },
+
+    "001": {
+        title: "RECOVERED RECORD",
+        status: "CORRUPTED",
+        content: `
+RECORD ID: 001
+STATUS: CORRUPTED
+
+The archive remembers what was removed.
+The archive forgets what was added.
+
+One of these statements is false.
+
+KEY: INCOMPLETE
+
+BUG WZSPB BW VBV HTT PRW
+
+END OF RECORD.`
+    },
+
+    "002": {
+        title: "RECOVERED RECORD",
+        status: "LOCKED",
+        content: `
+RECORD ID: 002
+STATUS: RESTRICTED
+
+ACCESS GRANTED.
+
+You found a record that was not
+supposed to be visible.
+
+There is a difference between
+a missing file and a file
+that was never created.
+
+END OF RECORD.`
+    }
+};
+
+function hasUnlocked() {
+    return localStorage.getItem("archive_002") === "true";
+}
+
+function home() {
+    app.innerHTML = `
+        <div class="eyebrow">ARCHIVE SYSTEM // VERSION 0.01</div>
+
+        <h1>ARCHIVE-000</h1>
+
+        <p>
+            A collection of recovered digital records.
+            Some files may be incomplete.
+        </p>
+
+        <hr class="divider">
+
+        <div class="panel">
+            <div class="panel-title">SYSTEM STATUS</div>
+
+            <div class="status">
+                <span>Archive connection</span>
+                <span>ESTABLISHED</span>
+            </div>
+
+            <div class="status">
+                <span>Records indexed</span>
+                <span>08</span>
+            </div>
+
+            <div class="status">
+                <span>Unknown records</span>
+                <span class="warning">01</span>
+            </div>
+
+            <div class="status">
+                <span>System integrity</span>
+                <span>PARTIAL</span>
+            </div>
+        </div>
+
+        <h2>RECENT ACTIVITY</h2>
+
+        <div class="panel">
+            <pre>
+[00:14:02] Archive mounted.
+[00:14:03] 8 records detected.
+[00:14:09] Index verification failed.
+[00:14:12] Unknown record detected.
+[00:14:13] Recovery attempted.
+[00:14:14] RECORD 000 FOUND.
+            </pre>
+        </div>
+
+        <p class="small">
+            Something is wrong with the archive.
+            We are still investigating.
+        </p>
+
+        <button onclick="location.hash='/records'">
+            ACCESS RECORDS →
+        </button>
+    `;
+}
+
+function recordList() {
+    app.innerHTML = `
+        <div class="eyebrow">DIRECTORY // 000</div>
+        <h1>RECORDS</h1>
+        <p>Available records recovered from the archive.</p>
+
+        ${recordLink("000", "RECOVERED", "Record 000")}
+        ${recordLink("001", "CORRUPTED", "Record 001")}
+        ${recordLink("002", hasUnlocked() ? "RECOVERED" : "LOCKED", "Record 002")}
+
+        <hr class="divider">
+
+        <p class="small">
+            Additional records are currently unavailable.
+        </p>
+    `;
+}
+
+function recordLink(id, state, name) {
+    const locked = id === "002" && !hasUnlocked();
+
+    return `
+        <a class="record" href="${locked ? '#/records' : '#/record/' + id}">
+            <span class="record-name">${name}</span>
+            <span class="record-state">${state} →</span>
+        </a>
+    `;
+}
+
+function showRecord(id) {
+    if (!records[id] || (id === "002" && !hasUnlocked())) {
+        notFound();
+        return;
+    }
+
+    const r = records[id];
+
+    app.innerHTML = `
+        <div class="eyebrow">ARCHIVE // RECORD ${id}</div>
+        <h1>${r.title}</h1>
+
+        <div class="panel">
+            <div class="panel-title">DOCUMENT VIEWER</div>
+            <pre>${r.content}</pre>
+        </div>
+
+        <p class="small">STATUS: ${r.status}</p>
+
+        <button onclick="location.hash='/records'">
+            ← BACK TO RECORDS
+        </button>
+    `;
+}
+
+function terminal() {
+    app.innerHTML = `
+        <div class="eyebrow">ARCHIVE SYSTEM // COMMAND LINE</div>
+        <h1>TERMINAL</h1>
+
+        <p>Enter a command. Type HELP for available commands.</p>
+
+        <div class="terminal">
+            <div id="output">ARCHIVE TERMINAL [VERSION 0.01]
+Connection established.
+Type HELP to begin.
+
+</div>
+
+            <div class="input-line">
+                <span>ARCHIVE&gt;</span>
+                <input id="command" autocomplete="off"
+                    spellcheck="false" placeholder="Enter command...">
+            </div>
+        </div>
+    `;
+
+    const input = document.getElementById("command");
+    input.addEventListener("keydown", function(e) {
+        if (e.key === "Enter") {
+            runCommand(input.value);
+            input.value = "";
+        }
+    });
+
+    input.focus();
+}
+
+function print(text) {
+    const output = document.getElementById("output");
+    output.textContent += "\n" + text + "\n";
+    output.scrollTop = output.scrollHeight;
+}
+
+function runCommand(raw) {
+    const command = raw.trim();
+    const cmd = command.toUpperCase();
+    if (!cmd) return;
+
+    print("ARCHIVE> " + command);
+
+    if (cmd === "HELP") {
+        print(`AVAILABLE COMMANDS:
+
+HELP        Display commands
+STATUS      Check system status
+LIST        List available records
+OPEN 000    Open record 000
+OPEN 001    Open record 001
+OPEN 002    Open record 002
+VERIFY      Verify archive
+SEARCH      Search archive
+CLEAR       Clear terminal
+`);
+    }
+
+    else if (cmd === "STATUS") {
+        print(`CONNECTION: ESTABLISHED
+INTEGRITY: PARTIAL
+RECORDS: 08
+UNKNOWN RECORDS: 01
+`);
+    }
+
+    else if (cmd === "LIST") {
+        print(`000 — RECOVERED
+001 — CORRUPTED
+002 — ${hasUnlocked() ? "RECOVERED" : "LOCKED"}
+003 — ERASED
+004 — CACHED
+005 — KNOWN
+006 — LOST
+007 — OBSOLETE
+008 — GENERATED`);
+    }
+
+    else if (cmd === "OPEN 000") {
+        print("Opening record 000...");
+        location.hash = "/record/000";
+    }
+
+    else if (cmd === "OPEN 001") {
+        print("Opening record 001...");
+        location.hash = "/record/001";
+    }
+
+    else if (cmd === "OPEN 002") {
+        if (hasUnlocked()) {
+            print("Opening record 002...");
+            location.hash = "/record/002";
+        } else {
+            print("ERROR: ACCESS DENIED.");
+        }
+    }
+
+    else if (cmd === "VERIFY") {
+        print(`VERIFYING ARCHIVE...
+INDEX: FAILED
+RECORD 000: VALID
+RECORD 001: CORRUPTED
+UNKNOWN RECORD: DETECTED
+`);
+    }
+
+    else if (cmd === "SEARCH") {
+        print("SEARCH REQUIRES A QUERY.");
+    }
+
+    else if (cmd.startsWith("SEARCH ")) {
+        const term = cmd.slice(7);
+        print(term.includes("INCOMPLETE")
+            ? "MATCH FOUND: README DESCRIPTION."
+            : "NO MATCH FOUND.");
+    }
+
+    else if (cmd.startsWith("SUBMIT ")) {
+        const answer = command.slice(7).trim().toUpperCase();
+
+        if (answer === "THE INDEX IS NOT THE END") {
+            localStorage.setItem("archive_002", "true");
+            print("ACCESS ACCEPTED.");
+            print("RECORD 002 HAS BEEN UNLOCKED.");
+        } else {
+            print("SUBMISSION REJECTED.");
+        }
+    }
+
+    else if (cmd === "CLEAR") {
+        document.getElementById("output").textContent = "";
+    }
+
+    else {
+        print("UNKNOWN COMMAND. TYPE HELP.");
+    }
+}
+
+function about() {
+    app.innerHTML = `
+        <div class="eyebrow">INFORMATION // ARCHIVE</div>
+        <h1>ABOUT</h1>
+
+        <p>
+            ARCHIVE-000 is a digital collection of recovered
+            records, fragments, and system logs.
+        </p>
+
+        <div class="panel">
+            <div class="panel-title">ARCHIVE INFORMATION</div>
+
+            <div class="status">
+                <span>Project</span>
+                <span>THE ARCHIVE</span>
+            </div>
+
+            <div class="status">
+                <span>Classification</span>
+                <span>UNKNOWN</span>
+            </div>
+
+            <div class="status">
+                <span>Repository</span>
+                <span><a href="${repo}" target="_blank">VIEW SOURCE ↗</a></span>
+            </div>
+        </div>
+
+        <p>
+            Not all records are complete.
+            Not all records are reliable.
+        </p>
+
+        <p class="warning">
+            Do not assume that the archive is accurate.
+        </p>
+    `;
+}
+
+function notFound() {
+    app.innerHTML = `
+        <div class="eyebrow">ERROR // 404</div>
+        <h1>NOT FOUND</h1>
+        <p>The requested record does not exist.</p>
+        <button onclick="location.hash='/'">RETURN HOME</button>
+    `;
+}
+
+function router() {
+    const path = location.hash.slice(1) || "/";
+
+    document.querySelectorAll(".nav a").forEach(a => {
+        a.classList.toggle("active", a.getAttribute("href") === "#" + path);
+    });
+
+    if (path === "/") home();
+    else if (path === "/records") recordList();
+    else if (path === "/terminal") terminal();
+    else if (path === "/about") about();
+    else if (path.startsWith("/record/")) {
+        showRecord(path.split("/")[2]);
+    }
+    else notFound();
+}
+
+window.addEventListener("hashchange", router);
+router();
+</script>
+
+</body>
+  </html>
