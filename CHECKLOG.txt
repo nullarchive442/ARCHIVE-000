@@ -1,0 +1,23 @@
+ARCHIVE SYSTEM — INTERNAL LOG
+
+SESSION: 0001
+STATUS: PARTIALLY RECOVERED
+
+[00:14:02] Archive mounted.
+[00:14:03] 8 records detected.
+[00:14:03] 1 record could not be indexed.
+
+[00:14:09] Index verification failed.
+
+[00:14:12] WARNING:
+The archive contains a record that does not belong here.
+
+[00:14:13] Attempting recovery...
+
+[00:14:13] Recovery failed.
+
+[00:14:14] Unknown record detected.
+
+RECORD ID: 000
+
+END OF LOG.
