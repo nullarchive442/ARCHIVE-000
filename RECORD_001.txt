@@ -1,0 +1,14 @@
+RECOVERED RECORD
+
+RECORD ID: 001
+STATUS: CORRUPTED
+
+The archive remembers what was removed.
+
+The archive forgets what was added.
+
+One of these statements is false.
+
+Check the earliest available record.
+
+END OF RECORD.
