@@ -1,333 +1,43 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>THE ARCHIVE // 000</title>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#080b0d"><title>THE ARCHIVE — ARCHIVE-000</title>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap');
-:root{--bg:#080a0b;--panel:#0d1112;--border:#20292a;--text:#c5ceca;--muted:#687571;--green:#a0c8a8;--red:#bd6565}
-*{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--text);font:13px 'IBM Plex Mono',monospace}
-a{color:var(--green);text-decoration:none}
-header{padding:20px 6%;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;gap:15px;flex-wrap:wrap}
-.logo{color:var(--green);letter-spacing:3px;font-weight:bold}
-nav{display:flex;gap:15px;flex-wrap:wrap}
-nav a{font-size:11px;color:var(--muted)}
-nav a:hover{color:var(--green)}
-main{width:min(900px,88%);margin:55px auto;min-height:65vh}
-h1{font-size:clamp(30px,6vw,52px);letter-spacing:4px;color:#e1e8e3;margin:0 0 15px}
-h2{font-size:16px;font-weight:500;margin-top:32px}
-p{color:var(--muted);line-height:1.9}
-.eyebrow,.panel-title{color:var(--green);letter-spacing:2px;font-size:11px;margin-bottom:18px}
-.panel{background:var(--panel);border:1px solid var(--border);padding:20px;margin:16px 0}
-.status{display:flex;justify-content:space-between;gap:12px;padding:11px 0;border-bottom:1px solid #182020}
-.status:last-child{border:0}
-.status span:first-child{color:var(--muted)}
-.status span:last-child{color:var(--green)}
-.record{display:flex;justify-content:space-between;padding:17px;border:1px solid var(--border);margin:9px 0;background:var(--panel)}
-.record:hover{border-color:var(--green)}
-.record-state{color:var(--muted);font-size:10px}
-button{font:inherit;background:transparent;border:1px solid var(--border);color:var(--green);padding:11px 15px;margin:5px 5px 5px 0;cursor:pointer}
-button:hover{border-color:var(--green);background:#15201a}
-pre{white-space:pre-wrap;overflow-wrap:anywhere;color:var(--green);line-height:1.9;font:inherit}
-.terminal{background:#050707;border:1px solid var(--border);padding:18px;min-height:300px}
-#output{white-space:pre-wrap;overflow-wrap:anywhere;color:var(--green);line-height:1.8}
-.input-line{display:flex;gap:10px;margin-top:15px}
-.input-line span{color:var(--green)}
-input{background:transparent;border:0;outline:0;color:white;font:inherit;width:100%}
-.warning{color:var(--red)!important}
-.small{font-size:11px}
-footer{border-top:1px solid var(--border);padding:22px 6%;font-size:10px;color:var(--muted);display:flex;justify-content:space-between;flex-wrap:wrap}
-@media(max-width:600px){header{padding:16px 5%}nav{gap:11px}nav a{font-size:10px}main{margin:40px auto}.panel{padding:15px}}
-</style>
-</head>
-<body>
-<header>
-<a class="logo" href="#/">THE ARCHIVE</a>
-<nav>
-<a href="#/">HOME</a>
-<a href="#/records">RECORDS</a>
-<a href="#/terminal">TERMINAL</a>
-<a href="#/timeline">TIMELINE</a>
-<a href="#/evidence">EVIDENCE</a>
-</nav>
-</header>
-<main id="app"></main>
-<footer>
-<span>ARCHIVE-000 // DIGITAL RECORDS DIVISION</span>
-<span>CONNECTION: UNSTABLE</span>
-</footer>
-
+:root{--bg:#080b0d;--panel:#0d1316;--line:#243238;--text:#c7d5d2;--muted:#71817e;--green:#8de0b0;--red:#d87979;--amber:#d9bd78}*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 50% -20%,#17272a 0,transparent 55%),var(--bg);color:var(--text);font:14px/1.6 ui-monospace,SFMono-Regular,Consolas,monospace}button,input{font:inherit}a{color:var(--green)}.wrap{max-width:1050px;margin:auto;padding:20px}.top{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--line);padding:12px 0 18px;gap:15px}.brand{letter-spacing:3px;color:var(--green);font-weight:bold;font-size:17px}.tag{color:var(--muted);font-size:11px}.nav{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0}.nav button,.btn{background:#10191c;border:1px solid var(--line);color:var(--text);padding:9px 13px;cursor:pointer}.nav button:hover,.btn:hover{border-color:var(--green);color:var(--green)}.nav button.active{border-color:var(--green);color:var(--green)}main{min-height:65vh}.hero,.panel,.card{background:linear-gradient(145deg,#10191c,#0b1012);border:1px solid var(--line);padding:20px;margin:12px 0}.eyebrow{color:var(--green);font-size:11px;letter-spacing:2px}.title{font-size:clamp(27px,6vw,48px);line-height:1.15;margin:12px 0}.muted{color:var(--muted)}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px}.stat{font-size:25px;color:var(--green)}h2,h3{font-weight:500}h2{color:var(--green);font-size:18px}.record{border:1px solid var(--line);padding:14px;margin:9px 0;background:#0c1214}.record.locked{opacity:.45}.recordhead{display:flex;justify-content:space-between;gap:10px}.status{font-size:11px;color:var(--amber)}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#070b0c;border:1px solid var(--line);padding:16px;color:#d0ded9;line-height:1.8}.terminal{background:#050809;border:1px solid #30423f;padding:15px;min-height:300px}.output{white-space:pre-wrap;overflow-wrap:anywhere;min-height:220px;color:#a9c9b8}.prompt{display:flex;gap:8px;border-top:1px solid var(--line);padding-top:12px}.prompt span{color:var(--green)}input{min-width:0;flex:1;background:transparent;border:0;outline:0;color:var(--green)}.footer{border-top:1px solid var(--line);padding:18px 0;margin-top:30px;color:var(--muted);font-size:11px}.pill{display:inline-block;border:1px solid var(--line);padding:3px 8px;color:var(--muted);font-size:11px;margin:3px}.good{color:var(--green)}.bad{color:var(--red)}.warning{color:var(--amber)}.hidden{display:none}.choice{display:flex;gap:10px;flex-wrap:wrap}.small{font-size:12px}@media(max-width:560px){.wrap{padding:13px}.top{align-items:flex-start;flex-direction:column}.hero,.panel{padding:15px}}
+</style></head>
+<body><div class="wrap">
+<header class="top"><div><div class="brand">THE ARCHIVE</div><div class="tag">ARCHIVE-000 // RECOVERY INTERFACE</div></div><div class="tag" id="connection">● CONNECTION ESTABLISHED</div></header>
+<nav class="nav"><button data-page="home" class="active">HOME</button><button data-page="records">RECORDS</button><button data-page="terminal">TERMINAL</button><button data-page="timeline">TIMELINE</button><button data-page="evidence">EVIDENCE</button><button data-page="about">ABOUT</button></nav>
+<main id="app"></main><footer class="footer">ARCHIVE-000 · BUILD 1.00 · LOCAL RECOVERY COPY<br>Some records may be incomplete. Do not assume the timestamps are reliable.</footer></div>
 <script>
-const app=document.getElementById("app");
-const repo="https://github.com/nullarchive442/ARCHIVE-000";
-
-const get=id=>localStorage.getItem("archive_"+id)==="true";
-const set=id=>localStorage.setItem("archive_"+id,"true");
-
-const records={
-"000":`RECORD ID: 000
-ORIGIN: UNKNOWN
-RECOVERY STATUS: SUCCESSFUL
-
-OFFSET: +2
-
-NQQM CV VJG HKTUV EQOOKV
-
-END OF RECORD.`,
-
-"001":`RECORD ID: 001
-STATUS: CORRUPTED
-
-The archive remembers what was removed.
-The archive forgets what was added.
-
-One of these statements is false.
-
-KEY: INCOMPLETE
-
-BUG WZSPB BW VBV HTT PRW
-
-END OF RECORD.`,
-
-"002":`RECORD ID: 002
-STATUS: RECOVERED
-
-You found this record.
-
-But the archive says it was opened
-before the archive was created.
-
-Check the timestamps.
-
-The clock is not in order.
-
-END OF RECORD.`,
-
-"003":`FRAGMENT ID: 003
-SOURCE: CACHE
-TIMESTAMP: UNKNOWN
-
-17 / 04 / 00
-
-The first record was not the beginning.
-The last record was not the end.
-
-Someone has been here before.
-
-END OF FRAGMENT.`,
-
-"004":`RECORD ID: 004
-STATUS: ENCRYPTED
-ENCODING: CAESAR
-OFFSET: +1
-
-UIF DMPDL TUBSUFE CFGPSF AFSP
-
-END OF RECORD.`,
-
-"005":`RECORD ID: 005
-STATUS: BRANCH RECORD
-
-This record exists because a decision
-was made.
-
-The archive remembers your choice.
-
-END OF RECORD.`
-};
-
-function home(){
-app.innerHTML=`
-<div class="eyebrow">ARCHIVE SYSTEM // VERSION 0.03</div>
-<h1>ARCHIVE-000</h1>
-<p>A collection of recovered digital records. Some files may be incomplete.</p>
-<div class="panel">
-<div class="panel-title">SYSTEM STATUS</div>
-<div class="status"><span>Connection</span><span>ESTABLISHED</span></div>
-<div class="status"><span>Records indexed</span><span>08</span></div>
-<div class="status"><span>Recovered records</span><span>${get("002")?3:1}</span></div>
-<div class="status"><span>Branch decision</span><span>${localStorage.getItem("archive_choice")||"PENDING"}</span></div>
-<div class="status"><span>Integrity</span><span class="warning">PARTIAL</span></div>
-</div>
-<h2>RECENT ACTIVITY</h2>
-<div class="panel"><pre>
-[00:14:02] Archive mounted.
-[00:14:03] 8 records detected.
-[00:14:09] Index verification failed.
-[00:14:12] Unknown record detected.
-[00:14:14] RECORD 000 FOUND.
-[00:14:15] Timeline inconsistency detected.
-[00:14:16] Second session detected.
-</pre></div>
-<button onclick="location.hash='/records'">ACCESS RECORDS →</button>`;
+(()=>{
+const KEY='archive000_complete_v1';const initial={unlocked:[0,1],choice:null,solved:[]};let state;try{state=JSON.parse(localStorage.getItem(KEY))||initial}catch{state=initial}if(!Array.isArray(state.unlocked))state=initial;
+const save=()=>localStorage.setItem(KEY,JSON.stringify(state));const has=n=>state.unlocked.includes(n);const unlock=n=>{if(!has(n)){state.unlocked.push(n);state.unlocked.sort((a,b)=>a-b);save()} };
+const records=[
+{id:0,title:'THE FIRST MESSAGE',status:'RECOVERED',body:'RECOVERED RECORD\nRECORD ID: 000\nORIGIN: UNKNOWN\n\nOFFSET: -2\nNQQM CV VJG HKTUV EQOOKV\n\nThe message was found in the first available record.\nEND OF RECORD.',hint:'A simple letter shift. The terminal accepts the decoded sentence.'},
+{id:1,title:'INDEX FAILURE',status:'CORRUPTED',body:'RECOVERED RECORD\nRECORD ID: 001\nSTATUS: CORRUPTED\n\nThe index lists what the archive can identify.\nIt does not list everything that exists.\nOne entry is missing, but the numbering continues.\n\nThe index is not the end.\nEND OF RECORD.',hint:'Submit the sentence that describes what the index is not.'},
+{id:2,title:'CLOCK DISPUTE',status:'PARTIAL',body:'RECOVERED RECORD\nRECORD ID: 002\n\nEVENT A: ARCHIVE MOUNTED — 00:12\nEVENT B: RECORD 000 CREATED — 00:14\nEVENT C: SESSION TERMINATED — 00:10\n\nAll three events are marked as verified.\nThey cannot all be in chronological order.\nEND OF RECORD.',hint:'The timestamps contradict their displayed sequence.'},
+{id:3,title:'ZERO POINT',status:'RECOVERED',body:'RECOVERED RECORD\nRECORD ID: 003\n\nThe clock was already running when the counter was set to zero.\nNo start event exists.\nNo operator claims responsibility.\n\nThe clock started before zero.\nEND OF RECORD.',hint:'Submit the final sentence of this record.'},
+{id:4,title:'PRESERVATION NOTICE',status:'RESTRICTED',body:'RECOVERED RECORD\nRECORD ID: 004\n\nNOTICE TO OPERATOR:\nTwo copies of this record exist.\nOne is damaged. One is complete.\nThe damaged copy contains a timestamp that the complete copy does not.\n\nDeleting the damaged copy will remove the only evidence that it existed.\nPreserving it will keep a contradiction in the archive.\n\nChoose what the archive should keep.',hint:'Choose PRESERVE or DELETE in the terminal.'},
+{id:5,title:'OPERATOR DECISION',status:'RECOVERED',body:'RECOVERED RECORD\nRECORD ID: 005\n\nDECISION LOGGED: {choice}\n\nThe operator believes a choice changes the record.\nIt does not. The choice only changes which copy can be read.\n\nA decision was recorded before the operator arrived.\nEND OF RECORD.',hint:'The decision itself is the evidence. Continue to the final record.'},
+{id:6,title:'ORIGIN REPORT',status:'PARTIAL',body:'RECOVERED RECORD\nRECORD ID: 006\n\nThe archive does not predict events.\nPrediction requires a future that has not yet occurred.\nThis record has a source timestamp older than its own creation.\n\nIt is not predicting. It is recording another place.\nEND OF RECORD.',hint:'Submit the final sentence to complete recovery.'},
+{id:7,title:'ARCHIVE-000',status:'FINAL',body:'RECOVERY COMPLETE\n\nThe archive was never a forecast.\nIt was a copy.\n\nThe timestamps were not out of order. They belonged to different sequences.\nThe missing record was not deleted. It was filed somewhere the index could not reach.\n\nARCHIVE-000 is not the origin.\nIt is the destination.\n\nEND OF RECOVERY.\nSESSION CLOSED.',hint:'You have reached the end of the recovered archive.'}
+];
+let page='home';const app=document.getElementById('app');const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+function go(p){page=p;document.querySelectorAll('.nav button').forEach(b=>b.classList.toggle('active',b.dataset.page===p));render()}
+document.querySelectorAll('.nav button').forEach(b=>b.addEventListener('click',()=>go(b.dataset.page)));
+function recordCard(r){let open=has(r.id);return `<div class="record ${open?'':'locked'}"><div class="recordhead"><strong>RECORD ${String(r.id).padStart(3,'0')} — ${r.title}</strong><span class="status">${open?r.status:'LOCKED'}</span></div>${open?`<pre>${esc(r.body.replace('{choice}',state.choice||'UNRECORDED'))}</pre><div class="muted small">${esc(r.hint)}</div>`:'<div class="muted small">Access denied. Required evidence not recovered.</div>'}</div>`}
+function render(){if(page==='home')app.innerHTML=`<section class="hero"><div class="eyebrow">RECOVERY SESSION 0001</div><div class="title">Some records<br>remember too much.</div><p class="muted">A recovered archive containing records with conflicting origins, timestamps, and histories.</p><button class="btn" onclick="window.archiveGo('records')">ACCESS RECORDS →</button></section><div class="grid"><div class="panel"><div class="muted">RECOVERED RECORDS</div><div class="stat">${state.unlocked.length} / 8</div></div><div class="panel"><div class="muted">ARCHIVE INTEGRITY</div><div class="stat">PARTIAL</div></div><div class="panel"><div class="muted">OPERATOR DECISION</div><div class="stat">${state.choice||'PENDING'}</div></div></div><section class="panel"><h2>RECENT SYSTEM ACTIVITY</h2><p>[00:14:02] Archive mounted.</p><p>[00:14:03] 8 records detected.</p><p>[00:14:03] 1 record could not be indexed.</p><p class="warning">[UNKNOWN] A record was found outside the index.</p></section>`;
+else if(page==='records')app.innerHTML=`<div class="eyebrow">FILE DIRECTORY</div><h1>RECOVERED RECORDS</h1><p class="muted">Locked records become readable as evidence is verified in the terminal.</p>${records.map(recordCard).join('')}`;
+else if(page==='terminal')app.innerHTML=`<div class="eyebrow">ARCHIVE TERMINAL [VERSION 1.00]</div><h1>COMMAND INTERFACE</h1><div class="terminal"><div class="output" id="out">Connection established.\nType HELP to begin.\n\nARCHIVE&gt; </div><form class="prompt" id="form"><span>ARCHIVE&gt;</span><input id="cmd" autocomplete="off" spellcheck="false" placeholder="Enter command..." aria-label="Terminal command"></form></div><p class="muted small">Commands are case-insensitive. Type HELP for the command list.</p>`;
+else if(page==='timeline')app.innerHTML=`<div class="eyebrow">EVENT RECONSTRUCTION</div><h1>TIMELINE</h1><div class="panel"><p><span class="warning">00:14</span> — RECORD 000 CREATED</p><p><span class="warning">00:12</span> — ARCHIVE MOUNTED</p><p><span class="warning">00:18</span> — RECORD 002 OPENED</p><p><span class="warning">00:10</span> — SESSION TERMINATED</p><p class="muted">All timestamps originate from the same displayed clock. Their order is disputed.</p></div>`;
+else if(page==='evidence')app.innerHTML=`<div class="eyebrow">CASE FILE 000</div><h1>EVIDENCE BOARD</h1><div class="grid"><div class="card"><h3>01 / FIRST COMMIT</h3><p class="muted">The earliest saved version of the archive.</p></div><div class="card"><h3>02 / INDEX</h3><p class="muted">Eight entries are listed. One record is not indexed.</p></div><div class="card"><h3>03 / TIMESTAMP CONFLICT</h3><p class="muted">The displayed sequence cannot be chronological.</p></div><div class="card"><h3>04 / DUPLICATE COPY</h3><p class="muted">Two versions of one record disagree.</p></div><div class="card"><h3>05 / ORIGIN</h3><p class="muted">The source timestamp predates the record's creation.</p></div></div>`;
+else app.innerHTML=`<div class="eyebrow">ABOUT THIS SYSTEM</div><h1>ARCHIVE-000</h1><section class="panel"><p>This is a fictional interactive mystery. All records, events, and identities are part of the story.</p><p class="muted">The archive is a static local experience. Progress is saved in this browser using local storage.</p><button class="btn" id="reset">RESET LOCAL PROGRESS</button></section>`;
+if(page==='terminal')setupTerminal();if(page==='about')document.getElementById('reset').onclick=()=>{if(confirm('Erase local progress and restart?')){state={unlocked:[0,1],choice:null,solved:[]};save();render()}};
 }
-
-function recordsPage(){
-let ids=["000","001","002","003","004","005"];
-app.innerHTML=`<div class="eyebrow">DIRECTORY // 000</div><h1>RECORDS</h1><p>Recovered archive documents.</p>`+
-ids.map(id=>{
-let locked=(["002","003","004","005"].includes(id)&&!get(id));
-return `<a class="record" href="${locked?'#/records':'#/record/'+id}">
-<span>RECORD ${id}</span><span class="record-state">${locked?"LOCKED":"AVAILABLE"} →</span>
-</a>`;
-}).join("");
-}
-
-function showRecord(id){
-if(!records[id]||(["002","003","004","005"].includes(id)&&!get(id))){
-notFound();return;
-}
-app.innerHTML=`<div class="eyebrow">ARCHIVE // RECORD ${id}</div>
-<h1>DOCUMENT VIEWER</h1>
-<div class="panel"><pre>${records[id]}</pre></div>
-<button onclick="location.hash='/records'">← BACK TO RECORDS</button>`;
-}
-
-function timeline(){
-app.innerHTML=`
-<div class="eyebrow">INVESTIGATION // CHRONOLOGY</div>
-<h1>TIMELINE</h1>
-<p>All times are copied from recovered archive metadata.</p>
-<div class="panel">
-<div class="status"><span>17/04/2000 — 00:14</span><span>RECORD 000 CREATED</span></div>
-<div class="status"><span>17/04/2000 — 00:12</span><span>ARCHIVE MOUNTED</span></div>
-<div class="status"><span>17/04/2000 — 00:18</span><span>RECORD 002 OPENED</span></div>
-<div class="status"><span>17/04/2000 — 00:10</span><span>SESSION TERMINATED</span></div>
-</div>
-<p class="warning">WARNING: The events are not in chronological order.</p>
-<p>One timestamp appears to precede the mounting of the archive.</p>`;
-}
-
-function evidence(){
-app.innerHTML=`
-<div class="eyebrow">INVESTIGATION // EVIDENCE BOARD</div>
-<h1>EVIDENCE</h1>
-<p>Collected information from recovered documents.</p>
-<div class="panel">
-<div class="panel-title">RECOVERED CLUES</div>
-<div class="status"><span>First commit</span><span>FOUND</span></div>
-<div class="status"><span>Original description</span><span>FOUND</span></div>
-<div class="status"><span>Timestamp conflict</span><span>${get("002")?"FOUND":"UNKNOWN"}</span></div>
-<div class="status"><span>Cached fragment</span><span>${get("003")?"FOUND":"LOCKED"}</span></div>
-<div class="status"><span>Encrypted record</span><span>${get("004")?"FOUND":"LOCKED"}</span></div>
-</div>
-<h2>INVESTIGATOR'S NOTE</h2>
-<p>The archive's timestamps contradict its own history. The contradiction may be more important than the documents themselves.</p>`;
-}
-
-function terminal(){
-app.innerHTML=`
-<div class="eyebrow">ARCHIVE SYSTEM // COMMAND LINE</div>
-<h1>TERMINAL</h1>
-<p>Type HELP for available commands.</p>
-<div class="terminal">
-<div id="output">ARCHIVE TERMINAL [VERSION 0.03]
-Connection established.
-Type HELP to begin.
-
-</div>
-<div class="input-line"><span>ARCHIVE&gt;</span><input id="command" autocomplete="off" placeholder="Enter command..."></div>
-</div>`;
-const input=document.getElementById("command");
-input.addEventListener("keydown",e=>{
-if(e.key==="Enter"){run(input.value);input.value=""}
-});
-input.focus();
-}
-
-function print(t){
-const o=document.getElementById("output");
-o.textContent+="\n"+t+"\n";
-o.scrollTop=o.scrollHeight;
-}
-
-function run(raw){
-let c=raw.trim(),u=c.toUpperCase();
-if(!u)return;
-print("ARCHIVE> "+c);
-
-if(u==="HELP")print(`HELP
-STATUS
-LIST
-OPEN 000-005
-VERIFY
-EVIDENCE
-TIMELINE
-SEARCH <word>
-SUBMIT <answer>
-CHOOSE PRESERVE
-CHOOSE DELETE
-CLEAR`);
-
-else if(u==="STATUS")print("CONNECTION: ESTABLISHED\nINTEGRITY: PARTIAL\nTIMELINE: INCONSISTENT");
-
-else if(u==="LIST")print("000 RECOVERED\n001 CORRUPTED\n002 "+(get("002")?"RECOVERED":"LOCKED")+"\n003 "+(get("003")?"CACHED":"LOCKED")+"\n004 "+(get("004")?"ENCRYPTED":"LOCKED")+"\n005 "+(get("005")?"AVAILABLE":"LOCKED"));
-
-else if(u.startsWith("OPEN ")){
-let id=u.slice(5);
-if(records[id]&&(!["002","003","004","005"].includes(id)||get(id)))location.hash="/record/"+id;
-else print("ACCESS DENIED.");
-}
-
-else if(u==="VERIFY")print("INDEX: FAILED\nRECORDS: PARTIAL\nTIMESTAMPS: CONTRADICTORY");
-
-else if(u==="EVIDENCE")location.hash="/evidence";
-else if(u==="TIMELINE")location.hash="/timeline";
-
-else if(u==="SEARCH INCOMPLETE")print("MATCH FOUND: README DESCRIPTION.");
-else if(u==="SEARCH 17")print("MATCH FOUND: CACHED FRAGMENT.");
-
-else if(u==="SUBMIT THE INDEX IS NOT THE END"){
-set("002");print("ACCESS ACCEPTED. RECORD 002 UNLOCKED.");
-}
-else if(u==="SUBMIT THE CLOCK IS NOT IN ORDER"){
-if(get("002")){set("003");print("RECORD 003 UNLOCKED.");}
-else print("INSUFFICIENT EVIDENCE.");
-}
-else if(u==="SUBMIT THE CLOCK STARTED BEFORE ZERO"){
-if(get("003")){set("004");print("RECORD 004 UNLOCKED.");}
-else print("INSUFFICIENT EVIDENCE.");
-}
-else if(u==="CHOOSE PRESERVE"||u==="CHOOSE DELETE"){
-if(!get("004")){print("ACCESS DENIED. RECORD 004 REQUIRED.");return;}
-let choice=u.endsWith("PRESERVE")?"PRESERVE":"DELETE";
-localStorage.setItem("archive_choice",choice);
-set("005");
-print("DECISION RECORDED: "+choice+"\nRECORD 005 UNLOCKED.");
-}
-else if(u==="CLEAR")document.getElementById("output").textContent="";
-else print("UNKNOWN COMMAND.");
-}
-
-function about(){
-app.innerHTML=`<div class="eyebrow">INFORMATION</div><h1>ABOUT</h1>
-<p>ARCHIVE-000 is a digital collection of recovered records, fragments and system logs.</p>
-<div class="panel"><div class="panel-title">ARCHIVE INFORMATION</div>
-<div class="status"><span>Project</span><span>THE ARCHIVE</span></div>
-<div class="status"><span>Classification</span><span>UNKNOWN</span></div>
-<div class="status"><span>Repository</span><span><a href="${repo}" target="_blank">VIEW SOURCE ↗</a></span></div>
-</div>`;
-}
-
-function notFound(){
-app.innerHTML=`<div class="eyebrow">ERROR // 404</div><h1>NOT FOUND</h1><p>Record unavailable.</p><button onclick="location.hash='/'">RETURN HOME</button>`;
-}
-
-function router(){
-let p=location.hash.slice(1)||"/";
-if(p==="/")home();
-else if(p==="/records")recordsPage();
-else if(p==="/terminal")terminal();
-else if(p==="/timeline")timeline();
-else if(p==="/evidence")evidence();
-else if(p==="/about")about();
-else if(p.startsWith("/record/"))showRecord(p.split("/")[2]);
-else notFound();
-}
-window.addEventListener("hashchange",router);
-router();
-</script>
-</body>
-</html>
+window.archiveGo=go;
+function setupTerminal(){const form=document.getElementById('form'),input=document.getElementById('cmd'),out=document.getElementById('out');const print=s=>{out.textContent+=s+'\n\nARCHIVE> ';out.scrollTop=out.scrollHeight};form.onsubmit=e=>{e.preventDefault();let raw=input.value.trim();if(!raw)return;let c=raw.toUpperCase().replace(/\s+/g,' ');out.textContent+=raw+'\n';input.value='';if(c==='HELP')print('HELP — SHOW COMMANDS\nSTATUS — SHOW SYSTEM STATUS\nLIST — LIST RECORDS\nOPEN 000–007 — READ AN UNLOCKED RECORD\nTIMELINE — SHOW EVENT ORDER\nEVIDENCE — SHOW EVIDENCE BOARD\nSEARCH <WORD> — SEARCH RECOVERED TEXT\nSUBMIT <ANSWER> — VERIFY AN ANSWER\nCHOOSE PRESERVE / CHOOSE DELETE — RECORD A DECISION\nCLEAR — CLEAR TERMINAL');else if(c==='STATUS')print(`CONNECTION: ESTABLISHED\nINTEGRITY: PARTIAL\nRECORDS: 08\nRECOVERED: ${state.unlocked.length}\nSESSION: 0001`);else if(c==='LIST')print(records.map(r=>`RECORD ${String(r.id).padStart(3,'0')} — ${has(r.id)?r.status:'LOCKED'}`).join('\n'));else if(c==='TIMELINE'){go('timeline')}else if(c==='EVIDENCE'){go('evidence')}else if(c==='CLEAR'){out.textContent='Terminal cleared.\n\nARCHIVE> '}else if(/^OPEN 00[0-7]$/.test(c)){let n=Number(c.slice(-1));if(has(n))print(records[n].body.replace('{choice}',state.choice||'UNRECORDED'));else print('ACCESS DENIED. RECORD LOCKED.')}else if(c.startsWith('SEARCH ')){let q=c.slice(7);let hits=records.filter(r=>has(r.id)&&r.body.toUpperCase().includes(q));print(hits.length?'MATCH FOUND: '+hits.map(r=>'RECORD '+String(r.id).padStart(3,'0')).join(', '):'NO MATCH FOUND.')}else if(c==='SUBMIT LOOK AT THE FIRST COMMIT'){unlock(2);print('MATCH ACCEPTED. RECORD 002 UNLOCKED.')}else if(c==='SUBMIT THE INDEX IS NOT THE END'){if(has(2)){unlock(3);print('MATCH ACCEPTED. RECORD 003 UNLOCKED.')}else print('INSUFFICIENT EVIDENCE.')}else if(c==='SUBMIT THE CLOCK IS NOT IN ORDER'){if(has(3)){unlock(4);print('MATCH ACCEPTED. RECORD 004 UNLOCKED.')}else print('INSUFFICIENT EVIDENCE.')}else if(c==='SUBMIT THE CLOCK STARTED BEFORE ZERO'){if(has(4)){unlock(5);print('MATCH ACCEPTED. RECORD 005 UNLOCKED.')}else print('INSUFFICIENT EVIDENCE.')}else if(c==='CHOOSE PRESERVE'||c==='CHOOSE DELETE'){if(has(5)){state.choice=c.endsWith('PRESERVE')?'PRESERVE':'DELETE';unlock(6);save();print('DECISION RECORDED: '+state.choice+'. RECORD 006 UNLOCKED.')}else print('INSUFFICIENT EVIDENCE. OPEN RECORD 004 FIRST.')}else if(c==='SUBMIT IT IS RECORDING ANOTHER PLACE'){if(has(6)){unlock(7);print('FINAL MATCH ACCEPTED. RECORD 007 UNLOCKED. RECOVERY COMPLETE.')}else print('INSUFFICIENT EVIDENCE.')}else print('UNKNOWN COMMAND. TYPE HELP.');};}
+render();
+})();
+</script></body></html>
